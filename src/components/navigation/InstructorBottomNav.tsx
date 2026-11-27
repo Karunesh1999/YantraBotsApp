@@ -46,7 +46,7 @@ export const InstructorBottomNav: React.FC = () => {
       </NavLink>
 
       <NavLink
-        to="/family"
+        to="/instructor/profile"
         className={({ isActive }) =>
           `flex flex-col items-center justify-center py-1.5 font-body text-label-sm ${
             isActive ? 'text-primary' : 'text-on-surface-variant hover:text-primary'
@@ -58,7 +58,7 @@ export const InstructorBottomNav: React.FC = () => {
       </NavLink>
 
       <NavLink
-        to="/family"
+        to="/instructor/profile"
         className={({ isActive }) =>
           `flex flex-col items-center justify-center py-1.5 font-body text-label-sm ${
             isActive ? 'text-primary' : 'text-on-surface-variant hover:text-primary'

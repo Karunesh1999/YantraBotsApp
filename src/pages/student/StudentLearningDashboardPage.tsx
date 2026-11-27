@@ -5,8 +5,10 @@ import { MobileShell } from '../../layouts/MobileShell'
 import { StudentBottomNav } from '../../components/navigation/StudentBottomNav'
 import { ResponsiveImage } from '../../components/common/ResponsiveImage'
 import { AppToast } from '../../components/common/AppToast'
+import { useRole } from '../../context/RoleContext'
 
 export const StudentLearningDashboardPage: React.FC = () => {
+  const { logout } = useRole()
   const [toast, setToast] = useState<string | null>(null)
 
   return (
@@ -35,7 +37,8 @@ export const StudentLearningDashboardPage: React.FC = () => {
             1,240 XP
           </span>
           <Link
-            to="/"
+            to="/login"
+            onClick={logout}
             aria-label="Switch role or sign out"
             className="w-9 h-9 rounded-full bg-secondary/40 flex items-center justify-center text-on-primary hover:bg-secondary"
           >

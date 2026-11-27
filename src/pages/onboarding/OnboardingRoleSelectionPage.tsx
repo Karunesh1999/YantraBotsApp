@@ -4,6 +4,7 @@ import { ChevronRight, Mail, Lock, Eye, EyeOff } from 'lucide-react'
 import type { UserRole } from '../../types/academy'
 import { ResponsiveImage } from '../../components/common/ResponsiveImage'
 import { useRole } from '../../context/RoleContext'
+import { OFFICIAL_CONTACT, ROLE_DEMO_CREDENTIALS } from '../../services/academyData'
 
 interface RoleCardConfig {
   role: UserRole
@@ -51,18 +52,38 @@ const ROLE_CARDS: RoleCardConfig[] = [
 
 export const OnboardingRoleSelectionPage: React.FC = () => {
   const navigate = useNavigate()
-  const { setRole } = useRole()
+  const { login } = useRole()
   const [selectedRole, setSelectedRole] = useState<UserRole>('Parent')
-  const [email, setEmail] = useState('anjali.sharma@familydemo.org')
-  const [password, setPassword] = useState('YantraDemo2026')
+  const [email, setEmail] = useState(ROLE_DEMO_CREDENTIALS.Parent.email)
+  const [password, setPassword] = useState(ROLE_DEMO_CREDENTIALS.Parent.password)
   const [showPassword, setShowPassword] = useState(false)
   const [rememberMe, setRememberMe] = useState(true)
+  const [authError, setAuthError] = useState<string | null>(null)
 
   const isParent = selectedRole === 'Parent'
 
+  const handleSelectRole = (nextRole: UserRole) => {
+    setSelectedRole(nextRole)
+    setEmail(ROLE_DEMO_CREDENTIALS[nextRole].email)
+    setPassword(ROLE_DEMO_CREDENTIALS[nextRole].password)
+    setAuthError(null)
+  }
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
-    setRole(selectedRole)
+    const expected = ROLE_DEMO_CREDENTIALS[selectedRole]
+    if (!email.trim() || !password.trim()) {
+      setAuthError('Please enter both email/username and password.')
+      return
+    }
+    if (email.trim().toLowerCase() !== expected.email.toLowerCase() || password !== expected.password) {
+      setAuthError(
+        `Invalid ${selectedRole} demo credentials. Use ${expected.email} / ${expected.password}.`,
+      )
+      return
+    }
+    setAuthError(null)
+    login(selectedRole)
     if (selectedRole === 'Parent') {
       navigate('/parent')
     } else if (selectedRole === 'Instructor') {
@@ -95,9 +116,12 @@ export const OnboardingRoleSelectionPage: React.FC = () => {
             </span>
           </div>
         </div>
-        <span className="px-2.5 py-1 rounded-full bg-primary-container text-on-primary-container font-body text-label-sm">
-          v2.4 Mobile
-        </span>
+        <Link
+          to="/"
+          className="px-2.5 py-1 rounded-full bg-primary-container text-on-primary-container font-body text-label-sm hover:bg-surface-container-high"
+        >
+          Public Home
+        </Link>
       </header>
 
       {/* Welcome Hero with Brand Logo */}
@@ -132,7 +156,7 @@ export const OnboardingRoleSelectionPage: React.FC = () => {
             <button
               key={card.role}
               type="button"
-              onClick={() => setSelectedRole(card.role)}
+              onClick={() => handleSelectRole(card.role)}
               className={`w-full text-left bg-surface rounded-lg p-gutter-md shadow-sm transition-colors duration-state-change flex items-center gap-gutter-md ${
                 isSelected
                   ? 'border-2 border-secondary bg-primary-container/20'
@@ -187,6 +211,11 @@ export const OnboardingRoleSelectionPage: React.FC = () => {
           </div>
 
           <form onSubmit={handleLogin} className="flex flex-col gap-gutter-md">
+            {authError && (
+              <div className="p-3 rounded-md bg-error-container text-on-error-container font-body text-body-sm">
+                {authError}
+              </div>
+            )}
             <label className="flex flex-col gap-gutter-xs">
               <span className="font-body text-label-md text-on-surface">Email or username</span>
               <div className="relative flex items-center">
@@ -244,7 +273,7 @@ export const OnboardingRoleSelectionPage: React.FC = () => {
                 <span className="font-body text-body-sm text-on-surface-variant">Remember me</span>
               </label>
               <Link
-                to="/messages"
+                to="/forgot-password"
                 className="font-body text-label-md text-secondary hover:underline"
               >
                 Forgot password?
@@ -265,7 +294,7 @@ export const OnboardingRoleSelectionPage: React.FC = () => {
                 New family at Yantra?
               </span>
               <Link
-                to="/enroll"
+                to="/register"
                 className="font-body text-label-md text-secondary hover:underline"
               >
                 Create Parent Account
@@ -274,7 +303,8 @@ export const OnboardingRoleSelectionPage: React.FC = () => {
           ) : (
             <p className="font-body text-body-sm text-on-surface-variant bg-surface-container-low p-gutter-sm rounded-md border border-outline-variant">
               Student and Instructor accounts are provisioned by Yantra Robotics Academy. Contact
-              your center coordinator if you need a password reset or 2FA code.
+              your center coordinator at {OFFICIAL_CONTACT.email} if you need a password reset or
+              2FA code.
             </p>
           )}
         </section>
@@ -283,7 +313,7 @@ export const OnboardingRoleSelectionPage: React.FC = () => {
       {/* Footer Trust Note */}
       <footer className="text-center pb-gutter-sm">
         <p className="font-body text-body-sm text-on-surface-variant">
-          Protected by 2FA verification · Ashburn &amp; Chantilly, VA
+          Protected by 2FA verification · {OFFICIAL_CONTACT.email} · {OFFICIAL_CONTACT.phone}
         </p>
       </footer>
     </div>

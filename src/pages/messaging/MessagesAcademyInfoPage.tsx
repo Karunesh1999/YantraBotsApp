@@ -4,7 +4,7 @@ import { ArrowLeft, CheckCircle2, CreditCard } from 'lucide-react'
 import { MobileShell } from '../../layouts/MobileShell'
 import { RoleBottomNav } from '../../components/navigation/RoleBottomNav'
 import { useRole } from '../../context/RoleContext'
-import { ACADEMY_LOCATIONS, ACADEMY_MESSAGES } from '../../services/academyData'
+import { ACADEMY_LOCATIONS, ACADEMY_MESSAGES, OFFICIAL_CONTACT } from '../../services/academyData'
 
 export const MessagesAcademyInfoPage: React.FC = () => {
   const { homePath } = useRole()
@@ -100,6 +100,18 @@ export const MessagesAcademyInfoPage: React.FC = () => {
                   </p>
                 </div>
               ))}
+            </div>
+            <div className="bg-primary-container rounded-xl p-gutter-md border border-outline-variant flex items-center justify-between gap-2">
+              <div className="font-body text-body-sm text-on-primary-container">
+                <span className="font-semibold block">{OFFICIAL_CONTACT.email}</span>
+                <span>{OFFICIAL_CONTACT.phone}</span>
+              </div>
+              <Link
+                to="/contact"
+                className="px-3 py-1.5 rounded-md bg-primary text-on-primary font-body text-label-md shrink-0"
+              >
+                Contact Us
+              </Link>
             </div>
           </section>
         )}

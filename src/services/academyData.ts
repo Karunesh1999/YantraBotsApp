@@ -1,13 +1,46 @@
 import type {
   AcademyLocation,
   AcademyMessage,
+  AchievementItem,
   AttendanceRecord,
   CourseProgram,
+  FaqItem,
+  OpportunityItem,
   PaymentRecord,
   RosterStudent,
   ScheduleSession,
   StudentProfile,
+  UserRole,
 } from '../types/academy'
+
+export const OFFICIAL_CONTACT = {
+  academyName: 'Yantra Robotics Academy',
+  email: 'contactus@yantrabots.com',
+  phone: '201-673-2418',
+  website: 'https://portal.yantrabots.com',
+  regions: 'Ashburn & Chantilly, Virginia · Online',
+}
+
+export const ROLE_DEMO_CREDENTIALS: Record<
+  UserRole,
+  { email: string; password: string; displayName: string }
+> = {
+  Parent: {
+    email: 'anjali.sharma@familydemo.org',
+    password: 'YantraDemo2026',
+    displayName: 'Anjali Sharma',
+  },
+  Student: {
+    email: 'aarav.sharma@student.yantrabots.com',
+    password: 'YantraDemo2026',
+    displayName: 'Aarav Sharma',
+  },
+  Instructor: {
+    email: 'priya.nair@yantrabots.com',
+    password: 'YantraDemo2026',
+    displayName: 'Ms. Priya Nair',
+  },
+}
 
 export const DEMO_STUDENTS: StudentProfile[] = [
   {
@@ -53,6 +86,16 @@ export const COURSE_PROGRAMS: CourseProgram[] = [
     priceLabel: 'Demo / qtr',
     description:
       'Build autonomous LEGO SPIKE Prime models with color, distance, and gyro sensors.',
+    curriculum: [
+      'Chassis engineering & gear-ratio torque fundamentals',
+      'Color, ultrasonic distance & gyro sensor calibration',
+      'Autonomous navigation & precision turns with Word Blocks',
+      'End-of-quarter mini robotics showcase',
+    ],
+    platform: 'LEGO Education SPIKE Prime',
+    duration: '10 Weeks · 90 min / session',
+    scheduleOptions: ['Saturdays 10:00 AM – 11:30 AM (Ashburn – HQ)', 'Wednesdays 5:00 PM – 6:30 PM (Ashburn – HQ)'],
+    instructor: 'Ms. Priya Nair',
     tags: ['LEGO SPIKE Prime', '10 Weeks', 'Ashburn – HQ · Sat 10 AM'],
     categories: ['Ashburn', 'Robotics'],
     imageWebp: '/assets/images/courses/explorer-robotics.webp',
@@ -70,6 +113,16 @@ export const COURSE_PROGRAMS: CourseProgram[] = [
     priceLabel: 'Demo / qtr',
     description:
       'Robot game strategy, modular attachments, and Innovation Project coaching for FIRST LEGO League.',
+    curriculum: [
+      'FIRST LEGO League Robot Game mission strategy & scoring',
+      'Quick-swap passive & motorized attachment design',
+      'Gyro PID line following & proportional control',
+      'Innovation Project research, Core Values & Judging prep',
+    ],
+    platform: 'LEGO SPIKE Prime + FLL Official Field',
+    duration: '10 Weeks · 90 min / session',
+    scheduleOptions: ['Wednesdays 4:30 PM – 6:00 PM (Ashburn – HQ)', 'Saturdays 1:00 PM – 2:30 PM (Chantilly)'],
+    instructor: 'Ms. Priya Nair',
     tags: ['LEGO SPIKE Prime', 'Ashburn – HQ & Chantilly · Wed/Sat'],
     categories: ['Ashburn', 'Chantilly', 'FLL'],
     imageWebp: '/assets/images/courses/fll-challenge.webp',
@@ -86,6 +139,16 @@ export const COURSE_PROGRAMS: CourseProgram[] = [
     priceLabel: 'Demo / qtr',
     description:
       'Drivetrain mechanics, gear ratios, and autonomous driver-skills coding on VEX platforms.',
+    curriculum: [
+      'High-efficiency drivetrains, intakes & lift mechanisms',
+      'Compound gear ratios & mechanical advantage calculations',
+      'Driver skills tuning & autonomous route programming',
+      'Scrimmage & regional VEX IQ / V5 readiness',
+    ],
+    platform: 'VEX IQ / VEX V5',
+    duration: '10 Weeks · 90 min / session',
+    scheduleOptions: ['Sundays 1:00 PM – 2:30 PM (Ashburn – Best Brains)'],
+    instructor: 'Mr. Ethan Brooks',
     tags: ['VEX IQ / V5', 'Ashburn – Best Brains · Sun 1 PM'],
     categories: ['Ashburn', 'FLL'],
     imageWebp: '/assets/images/courses/vex-challenger.webp',
@@ -102,6 +165,16 @@ export const COURSE_PROGRAMS: CourseProgram[] = [
     priceLabel: 'Demo / qtr',
     description:
       'Logic, loops, and AI & Machine Learning foundations through interactive Python & Scratch projects.',
+    curriculum: [
+      'Algorithmic thinking, conditionals, loops & functions',
+      'Interactive games & animations in Scratch',
+      'Python fundamentals, data structures & turtle/grid logic',
+      'Intro to AI & Machine Learning classification projects',
+    ],
+    platform: 'Python 3 & Scratch',
+    duration: '10 Weeks · 60 min / session',
+    scheduleOptions: ['Tuesdays 5:00 PM – 6:00 PM (Online)', 'Thursdays 3:45 PM – 4:45 PM (Moorefield ES)'],
+    instructor: 'Mr. Ethan Brooks',
     tags: ['Python & Scratch', 'Online & Moorefield ES · Tue/Thu'],
     categories: ['Online', 'Ashburn', 'Coding'],
     imageWebp: '/assets/images/courses/after-school-coding.webp',
@@ -118,6 +191,16 @@ export const COURSE_PROGRAMS: CourseProgram[] = [
     priceLabel: 'Demo / qtr',
     description:
       'Hands-on robotics engineering and block coding challenges right after school.',
+    curriculum: [
+      'Simple machines: levers, pulleys, cams & gears',
+      'Motorized robot builds with tilt & motion sensors',
+      'Block-based sequencing, loops & sound/light feedback',
+      'Weekly mini-challenges & teamwork',
+    ],
+    platform: 'LEGO Education Robotics',
+    duration: '8 Weeks · 60 min / session',
+    scheduleOptions: ['Thursdays 3:30 PM – 4:30 PM (Moorefield Station ES)'],
+    instructor: 'Ms. Priya Nair',
     tags: ['LEGO Robotics', 'Moorefield Station ES · Thu 3:30 PM'],
     categories: ['Ashburn', 'Robotics'],
     imageWebp: '/assets/images/courses/after-school-robotics.webp',
@@ -134,6 +217,16 @@ export const COURSE_PROGRAMS: CourseProgram[] = [
     priceLabel: 'Demo / qtr',
     description:
       'Early STEM discovery with gears, simple machines, and icon-based coding.',
+    curriculum: [
+      'Foundational mechanical assembly with colorful hubs & motors',
+      'Icon-based drag-and-drop coding sequences',
+      'Cause-and-effect experiments with color & tilt sensors',
+      'Storytelling & creative STEM problem solving',
+    ],
+    platform: 'LEGO Education SPIKE Essential',
+    duration: '10 Weeks · 60 min / session',
+    scheduleOptions: ['Saturdays 10:00 AM – 11:00 AM (Ashburn – HQ)', 'Sundays 10:30 AM – 11:30 AM (Chantilly)'],
+    instructor: 'Ms. Priya Nair',
     tags: ['LEGO SPIKE Essential', 'Ashburn – HQ & Chantilly · Sat'],
     categories: ['Ashburn', 'Chantilly', 'Robotics'],
     imageWebp: '/assets/images/courses/discoverer-robotics.webp',
@@ -150,6 +243,16 @@ export const COURSE_PROGRAMS: CourseProgram[] = [
     priceLabel: 'Demo / qtr',
     description:
       'Collaborative LEGO model building, motorized mechanisms, and FIRST LEGO League Explore showcase.',
+    curriculum: [
+      'Real-world seasonal STEM theme exploration',
+      'Motorized LEGO Explore Set engineering & coding',
+      'Team Show Me Poster design & presentation practice',
+      'FIRST LEGO League Explore Festival showcase',
+    ],
+    platform: 'FIRST LEGO League Explore + SPIKE Essential',
+    duration: '10 Weeks · 75 min / session',
+    scheduleOptions: ['Sundays 11:00 AM – 12:15 PM (Chantilly – Chinmaya Somnath)'],
+    instructor: 'Mr. Ethan Brooks',
     tags: ['FIRST LEGO League', 'Chantilly – Chinmaya · Sun'],
     categories: ['Ashburn', 'Chantilly', 'FLL'],
     imageWebp: '/assets/images/courses/fll-explore.webp',
@@ -166,6 +269,16 @@ export const COURSE_PROGRAMS: CourseProgram[] = [
     priceLabel: 'Demo / qtr',
     description:
       'Advanced LEGO Education SPIKE engineering, multi-sensor automation, and timed mission runs.',
+    curriculum: [
+      'Multi-sensor fusion (gyro + dual color + distance)',
+      'Modular drivetrain & structural bracing techniques',
+      'Timed autonomous obstacle courses & repeatability',
+      'Preparation for FLL Challenge & VEX-Challenger',
+    ],
+    platform: 'LEGO Education SPIKE Prime',
+    duration: '10 Weeks · 90 min / session',
+    scheduleOptions: ['Fridays 5:30 PM – 7:00 PM (Ashburn – HQ)'],
+    instructor: 'Ms. Priya Nair',
     tags: ['LEGO SPIKE Prime', 'Ashburn – HQ · Fri 5:30 PM'],
     categories: ['Ashburn', 'Robotics'],
     imageWebp: '/assets/images/courses/legoedu-challenger.webp',
@@ -310,5 +423,90 @@ export const ACADEMY_LOCATIONS: AcademyLocation[] = [
     id: 'loc-online',
     name: 'Online',
     description: 'Live Instructor-Led Python, Scratch & AI',
+  },
+]
+
+export const FAQ_ITEMS: FaqItem[] = [
+  {
+    id: 'faq-1',
+    category: 'Enrollment',
+    question: 'Which robotics track should my child start with?',
+    answer:
+      'Grades K–2 start in Discoverer Robotics (SPIKE Essential), Grades 3–5 in Explorer Robotics (SPIKE Prime), and Grades 4–9 with prior experience can join FLL Challenge or VEX-Challenger.',
+  },
+  {
+    id: 'faq-2',
+    category: 'Attendance & Pickup',
+    question: 'How does 2-step QR pickup verification work?',
+    answer:
+      'Parents present their encrypted QR Pickup Pass from the portal. Instructors scan the pass and confirm Photo ID or Guardian PIN before releasing any student.',
+  },
+  {
+    id: 'faq-3',
+    category: 'Schedule',
+    question: 'Can we schedule a makeup class if my child misses a session?',
+    answer:
+      'Yes. Use Report Absence in the Schedule tab to request an available makeup slot at Ashburn, Chantilly, or Online.',
+  },
+  {
+    id: 'faq-4',
+    category: 'Payments',
+    question: 'What payment methods does Yantra Robotics Academy accept?',
+    answer:
+      'Tuition can be submitted via Zelle, Venmo, or Check at Ashburn – HQ. Upload your receipt in the Payments tab for coordinator verification.',
+  },
+]
+
+export const OPPORTUNITIES: OpportunityItem[] = [
+  {
+    id: 'opp-fll',
+    title: 'FIRST LEGO League (FLL) Competition Teams',
+    badge: 'Grades 4–8',
+    audience: 'Ashburn – HQ & Chantilly',
+    summary:
+      'Join seasonal regional tournament teams building autonomous LEGO SPIKE Prime robots and presenting Innovation Projects.',
+    schedule: 'Fall & Winter Seasons · Scrimmages in Dec',
+  },
+  {
+    id: 'opp-vex',
+    title: 'VEX IQ & VEX V5 Challenger Track',
+    badge: 'Grades 5–9',
+    audience: 'Ashburn – Best Brains',
+    summary:
+      'Advanced mechanical engineering, drivetrain optimization, and autonomous skills runs for competitive robotics.',
+    schedule: 'Year-round Quarterly Cohorts',
+  },
+  {
+    id: 'opp-bootcamp',
+    title: 'Pre-Season & Summer Robotics Bootcamps',
+    badge: 'Ages 6–14',
+    audience: 'Ashburn, Chantilly & Online',
+    summary:
+      'Intensive hands-on workshops covering robot game strategy, Python coding, and AI fundamentals.',
+    schedule: 'Summer & Pre-Season (Aug)',
+  },
+]
+
+export const ACHIEVEMENTS: AchievementItem[] = [
+  {
+    id: 'ach-1',
+    title: 'Regional Robot Performance Finalist',
+    event: 'FIRST LEGO League Virginia Regional',
+    year: '2025–2026',
+    highlight: 'Top-scoring autonomous mission runs & modular attachment design.',
+  },
+  {
+    id: 'ach-2',
+    title: 'Innovation Project Excellence',
+    event: 'Northern Virginia FLL Qualifier',
+    year: '2025–2026',
+    highlight: 'Recognized for real-world STEM research and team presentation.',
+  },
+  {
+    id: 'ach-3',
+    title: 'VEX Skills & Design Showcase',
+    event: 'Ashburn Youth Robotics Invitational',
+    year: '2026',
+    highlight: 'High-efficiency drivetrain and sensor-guided autonomous programming.',
   },
 ]

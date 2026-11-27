@@ -11,6 +11,9 @@ import {
   QrCode,
   PartyPopper,
   Trophy,
+  GraduationCap,
+  CalendarCheck,
+  Sparkles,
 } from 'lucide-react'
 import { MobileShell } from '../../layouts/MobileShell'
 import { ParentBottomNav } from '../../components/navigation/ParentBottomNav'
@@ -248,6 +251,56 @@ export const ParentDashboardPage: React.FC = () => {
               </p>
             </div>
           </article>
+        </section>
+
+        {/* Explore Academy 2x2 Grid */}
+        <section className="flex flex-col gap-gutter-sm" aria-label="Explore Academy">
+          <h2 className="font-headline text-title-lg text-on-surface">Explore Academy</h2>
+          <div className="grid grid-cols-2 gap-gutter-sm">
+            <Link
+              to="/courses"
+              className="bg-surface rounded-lg p-gutter-md border border-outline-variant shadow-sm flex flex-col gap-1.5 hover:border-secondary transition-colors duration-state-change"
+            >
+              <GraduationCap className="w-5 h-5 text-primary" aria-hidden="true" />
+              <span className="font-body text-title-md text-on-surface">Courses</span>
+              <span className="font-body text-body-sm text-on-surface-variant">
+                8 STEM &amp; Robotics tracks
+              </span>
+            </Link>
+
+            <Link
+              to="/appointment"
+              className="bg-surface rounded-lg p-gutter-md border border-outline-variant shadow-sm flex flex-col gap-1.5 hover:border-secondary transition-colors duration-state-change"
+            >
+              <CalendarCheck className="w-5 h-5 text-primary" aria-hidden="true" />
+              <span className="font-body text-title-md text-on-surface">Book Trial</span>
+              <span className="font-body text-body-sm text-on-surface-variant">
+                Schedule an appointment
+              </span>
+            </Link>
+
+            <Link
+              to="/opportunities"
+              className="bg-surface rounded-lg p-gutter-md border border-outline-variant shadow-sm flex flex-col gap-1.5 hover:border-secondary transition-colors duration-state-change"
+            >
+              <Sparkles className="w-5 h-5 text-secondary" aria-hidden="true" />
+              <span className="font-body text-title-md text-on-surface">Opportunities</span>
+              <span className="font-body text-body-sm text-on-surface-variant">
+                FLL, VEX &amp; Bootcamps
+              </span>
+            </Link>
+
+            <Link
+              to="/achievements"
+              className="bg-surface rounded-lg p-gutter-md border border-outline-variant shadow-sm flex flex-col gap-1.5 hover:border-secondary transition-colors duration-state-change"
+            >
+              <Trophy className="w-5 h-5 text-warning" aria-hidden="true" />
+              <span className="font-body text-title-md text-on-surface">Achievements</span>
+              <span className="font-body text-body-sm text-on-surface-variant">
+                Awards &amp; milestones
+              </span>
+            </Link>
+          </div>
         </section>
       </main>
 

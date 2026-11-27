@@ -15,7 +15,7 @@ const CATEGORIES = [
 ]
 
 export const ProgramsExplorePage: React.FC = () => {
-  const { homePath } = useRole()
+  const { homePath, isAuthenticated } = useRole()
   const [activeCategory, setActiveCategory] = useState<string>('all')
   const [searchQuery, setSearchQuery] = useState<string>('')
 
@@ -34,7 +34,7 @@ export const ProgramsExplorePage: React.FC = () => {
   }, [activeCategory, searchQuery])
 
   return (
-    <MobileShell>
+    <MobileShell bottomPaddingClass={isAuthenticated ? 'pb-24' : 'pb-8'}>
       {/* Deep Navy Header */}
       <header className="bg-primary text-on-primary px-page-margin pt-gutter-lg pb-gutter-md flex flex-col gap-gutter-sm sticky top-0 z-20">
         <div className="flex items-center justify-between">
@@ -163,19 +163,27 @@ export const ProgramsExplorePage: React.FC = () => {
                   </p>
                 )}
 
-                <Link
-                  to={`/enroll?program=${encodeURIComponent(course.title)}`}
-                  className="w-full min-h-[44px] inline-flex items-center justify-center rounded-md bg-secondary text-on-secondary font-body text-label-lg hover:bg-primary transition-colors duration-state-change"
-                >
-                  Enroll Now
-                </Link>
+                <div className="grid grid-cols-2 gap-gutter-sm">
+                  <Link
+                    to={`/courses/${course.id}`}
+                    className="min-h-[44px] inline-flex items-center justify-center rounded-md bg-surface border border-outline text-primary font-body text-label-lg hover:border-secondary transition-colors duration-state-change"
+                  >
+                    View Details
+                  </Link>
+                  <Link
+                    to={`/enroll?program=${encodeURIComponent(course.title)}`}
+                    className="min-h-[44px] inline-flex items-center justify-center rounded-md bg-secondary text-on-secondary font-body text-label-lg hover:bg-primary transition-colors duration-state-change"
+                  >
+                    Enroll Now
+                  </Link>
+                </div>
               </div>
             </article>
           ))
         )}
       </main>
 
-      <RoleBottomNav />
+      {isAuthenticated && <RoleBottomNav />}
     </MobileShell>
   )
 }

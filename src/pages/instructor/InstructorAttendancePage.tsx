@@ -4,10 +4,12 @@ import { ArrowLeft, ScanLine, Search, X } from 'lucide-react'
 import { MobileShell } from '../../layouts/MobileShell'
 import { InstructorBottomNav } from '../../components/navigation/InstructorBottomNav'
 import { AppToast } from '../../components/common/AppToast'
+import { useRole } from '../../context/RoleContext'
 import { INITIAL_ROSTER } from '../../services/academyData'
 import type { RosterStudent } from '../../types/academy'
 
 export const InstructorAttendancePage: React.FC = () => {
+  const { logout } = useRole()
   const [roster, setRoster] = useState<RosterStudent[]>(INITIAL_ROSTER)
   const [activeClass, setActiveClass] = useState<string>(
     'Class Roster: FLL Challenge · Ashburn HQ (4:30 PM)',
@@ -54,7 +56,8 @@ export const InstructorAttendancePage: React.FC = () => {
       {/* Deep Navy Staff Dashboard Header */}
       <header className="bg-primary text-on-primary px-page-margin pt-gutter-lg pb-gutter-md flex items-center justify-between sticky top-0 z-20">
         <Link
-          to="/"
+          to="/login"
+          onClick={logout}
           aria-label="Back to role selection"
           className="w-10 h-10 rounded-full bg-secondary/40 flex items-center justify-center text-on-primary"
         >

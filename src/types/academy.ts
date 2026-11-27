@@ -25,6 +25,11 @@ export interface CourseProgram {
   price: number
   priceLabel: string
   description: string
+  curriculum: string[]
+  platform: string
+  duration: string
+  scheduleOptions: string[]
+  instructor: string
   tags: string[]
   categories: string[]
   imageWebp: string
@@ -82,4 +87,28 @@ export interface AcademyLocation {
   id: string
   name: string
   description: string
+}
+
+export interface FaqItem {
+  id: string
+  category: string
+  question: string
+  answer: string
+}
+
+export interface OpportunityItem {
+  id: string
+  title: string
+  badge: string
+  audience: string
+  summary: string
+  schedule: string
+}
+
+export interface AchievementItem {
+  id: string
+  title: string
+  event: string
+  year: string
+  highlight: string
 }

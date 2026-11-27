@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLeft, LogOut, ChevronRight, Plus, Lock } from 'lucide-react'
+import { ArrowLeft, LogOut, ChevronRight, Plus, Lock, Sparkles } from 'lucide-react'
 import { MobileShell } from '../../layouts/MobileShell'
 import { RoleBottomNav } from '../../components/navigation/RoleBottomNav'
 import { useRole } from '../../context/RoleContext'
 import { DEMO_STUDENTS } from '../../services/academyData'
 
 export const FamilyProfilePage: React.FC = () => {
-  const { homePath } = useRole()
+  const { homePath, logout } = useRole()
   const [medRevealed, setMedRevealed] = useState(false)
   const aarav = DEMO_STUDENTS[0]
   const diya = DEMO_STUDENTS[1]
@@ -25,7 +25,8 @@ export const FamilyProfilePage: React.FC = () => {
         </Link>
         <h1 className="font-headline text-headline-md text-on-primary">My Family</h1>
         <Link
-          to="/"
+          to="/login"
+          onClick={logout}
           aria-label="Switch role or logout"
           className="w-10 h-10 rounded-full bg-secondary/40 flex items-center justify-center text-on-primary"
         >
@@ -166,6 +167,30 @@ export const FamilyProfilePage: React.FC = () => {
               </span>
             </div>
           </div>
+        </section>
+
+        {/* Student Opportunities Section */}
+        <section className="flex flex-col gap-gutter-sm">
+          <h2 className="font-headline text-title-lg text-on-surface">Student Opportunities</h2>
+          <Link
+            to="/opportunities"
+            className="bg-surface rounded-xl p-gutter-md border border-outline-variant shadow-sm flex items-center justify-between gap-gutter-sm hover:border-secondary transition-colors duration-state-change"
+          >
+            <div className="flex items-center gap-gutter-sm min-w-0">
+              <div className="w-10 h-10 rounded-full bg-primary-container text-primary flex items-center justify-center shrink-0">
+                <Sparkles className="w-5 h-5" aria-hidden="true" />
+              </div>
+              <div className="min-w-0">
+                <span className="font-body text-title-md text-on-surface block">
+                  Competitions, Teams &amp; Bootcamps
+                </span>
+                <span className="font-body text-body-sm text-on-surface-variant block truncate">
+                  FLL Challenge, VEX IQ/V5 &amp; Seasonal Workshops
+                </span>
+              </div>
+            </div>
+            <ChevronRight className="w-5 h-5 text-on-surface-variant shrink-0" aria-hidden="true" />
+          </Link>
         </section>
 
         {/* Emergency Contacts & Settings */}
