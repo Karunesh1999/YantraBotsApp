@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-navy: #142B5C;
+  --color-primary-blue: #3159A5;
+  --color-secondary-blue: #5479C6;
+  --color-background: #F4F6FA;
+  --color-surface: #FFFFFF;
+  --color-on-surface: #18243A;
+  --color-text-primary: #18243A;
+  --color-text-secondary: #555F72;
+  --color-text-muted: #778196;
+  --color-primary: #142B5C;
+  --color-on-primary: #FFFFFF;
+  --color-primary-container: #EEF0FF;
+  --color-on-primary-container: #142B5C;
+  --color-secondary: #3159A5;
+  --color-on-secondary: #FFFFFF;
+  --color-secondary-container: #EDF0FF;
+  --color-on-secondary-container: #002D6C;
+  --color-tertiary: #5479C6;
+  --color-on-tertiary: #0E0E0E;
+  --color-surface-container-low: #F4F6FA;
+  --color-surface-container: #EDF0FF;
+  --color-surface-container-high: #DAE2FF;
+  --color-on-surface-variant: #555F72;
+  --color-outline: #BDC7DE;
+  --color-outline-variant: #D9E3FA;
+  --color-success: #20A574;
+  --color-on-success: #002113;
+  --color-success-container: #BEFFDB;
+  --color-on-success-container: #003824;
+  --color-warning: #F2A93B;
+  --color-on-warning: #2A1800;
+  --color-warning-container: #FFEEDD;
+  --color-on-warning-container: #452B00;
+  --color-error: #DF5151;
+  --color-on-error: #1A1A1A;
+  --color-error-container: #FFEDEB;
+  --color-on-error-container: #68000E;
+
+  --radius-sm: 6px;
+  --radius-DEFAULT: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --spacing-gutter-xs: 4px;
+  --spacing-gutter-sm: 8px;
+  --spacing-gutter-md: 16px;
+  --spacing-gutter-lg: 24px;
+  --spacing-gutter-xl: 32px;
+  --spacing-section: 40px;
+  --spacing-page-margin: 16px;
+
+  --font-display: "Alatsi", sans-serif;
+  --font-headline: "Alatsi", sans-serif;
+  --font-title: "Instrument Sans", sans-serif;
+  --font-body: "Instrument Sans", sans-serif;
+  --font-label: "Instrument Sans", sans-serif;
+  --font-mono: "Red Hat Mono", monospace;
+
+  --transition-duration-state-change: 120ms;
+  --transition-duration-surface-enter: 240ms;
+  --transition-duration-surface-exit: 160ms;
+}
+
+@layer utilities {
+  .text-display-lg {
+    font-size: 36px;
+    line-height: 44px;
+    letter-spacing: -0.5px;
+    font-weight: 400;
+  }
+  .text-display-lg-mobile {
+    font-size: 28px;
+    line-height: 34px;
+    letter-spacing: -0.25px;
+    font-weight: 400;
+  }
+  .text-headline-lg {
+    font-size: 24px;
+    line-height: 30px;
+    letter-spacing: -0.2px;
+    font-weight: 400;
+  }
+  .text-headline-md {
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: 0px;
+    font-weight: 400;
+  }
+  .text-title-lg {
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    font-weight: 700;
+  }
+  .text-title-md {
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0px;
+    font-weight: 600;
+  }
+  .text-body-lg {
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: 0px;
+    font-weight: 400;
+  }
+  .text-body-md {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    font-weight: 400;
+  }
+  .text-body-sm {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.1px;
+    font-weight: 400;
+  }
+  .text-label-lg {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    font-weight: 600;
+  }
+  .text-label-md {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.2px;
+    font-weight: 600;
+  }
+  .text-label-sm {
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 0.3px;
+    font-weight: 600;
+  }
+  .text-mono-md {
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: 0px;
+    font-weight: 500;
+  }
+}
+
+:root {
+  --background: #F4F6FA;
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  color-scheme: light;
+}
+
+html,
+body {
+  margin: 0;
+  background-color: #F4F6FA;
+  color: #18243A;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
