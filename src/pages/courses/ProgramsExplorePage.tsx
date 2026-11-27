@@ -2,8 +2,9 @@ import React, { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Calendar, Info, Search } from 'lucide-react'
 import { MobileShell } from '../../layouts/MobileShell'
-import { ParentBottomNav } from '../../components/navigation/ParentBottomNav'
+import { RoleBottomNav } from '../../components/navigation/RoleBottomNav'
 import { ResponsiveImage } from '../../components/common/ResponsiveImage'
+import { useRole } from '../../context/RoleContext'
 import { COURSE_PROGRAMS } from '../../services/academyData'
 
 const CATEGORIES = [
@@ -14,6 +15,7 @@ const CATEGORIES = [
 ]
 
 export const ProgramsExplorePage: React.FC = () => {
+  const { homePath } = useRole()
   const [activeCategory, setActiveCategory] = useState<string>('all')
   const [searchQuery, setSearchQuery] = useState<string>('')
 
@@ -37,7 +39,7 @@ export const ProgramsExplorePage: React.FC = () => {
       <header className="bg-primary text-on-primary px-page-margin pt-gutter-lg pb-gutter-md flex flex-col gap-gutter-sm sticky top-0 z-20">
         <div className="flex items-center justify-between">
           <Link
-            to="/parent"
+            to={homePath}
             aria-label="Back to home"
             className="w-10 h-10 rounded-full bg-secondary/40 flex items-center justify-center text-on-primary"
           >
@@ -173,7 +175,7 @@ export const ProgramsExplorePage: React.FC = () => {
         )}
       </main>
 
-      <ParentBottomNav />
+      <RoleBottomNav />
     </MobileShell>
   )
 }

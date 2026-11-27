@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, LogOut, ChevronRight, Plus, Lock } from 'lucide-react'
 import { MobileShell } from '../../layouts/MobileShell'
-import { ParentBottomNav } from '../../components/navigation/ParentBottomNav'
+import { RoleBottomNav } from '../../components/navigation/RoleBottomNav'
+import { useRole } from '../../context/RoleContext'
 import { DEMO_STUDENTS } from '../../services/academyData'
 
 export const FamilyProfilePage: React.FC = () => {
+  const { homePath } = useRole()
   const [medRevealed, setMedRevealed] = useState(false)
   const aarav = DEMO_STUDENTS[0]
   const diya = DEMO_STUDENTS[1]
@@ -15,7 +17,7 @@ export const FamilyProfilePage: React.FC = () => {
       {/* Deep Navy Header */}
       <header className="bg-primary text-on-primary px-page-margin pt-gutter-lg pb-gutter-md flex items-center justify-between sticky top-0 z-20">
         <Link
-          to="/parent"
+          to={homePath}
           aria-label="Back to home"
           className="w-10 h-10 rounded-full bg-secondary/40 flex items-center justify-center text-on-primary"
         >
@@ -183,7 +185,7 @@ export const FamilyProfilePage: React.FC = () => {
         </section>
       </main>
 
-      <ParentBottomNav />
+      <RoleBottomNav />
     </MobileShell>
   )
 }

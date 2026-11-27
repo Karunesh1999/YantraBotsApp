@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Bot, ChevronRight, Mail, Lock, Eye, EyeOff } from 'lucide-react'
 import type { UserRole } from '../../types/academy'
 import { ResponsiveImage } from '../../components/common/ResponsiveImage'
+import { useRole } from '../../context/RoleContext'
 
 interface RoleCardConfig {
   role: UserRole
@@ -50,6 +51,7 @@ const ROLE_CARDS: RoleCardConfig[] = [
 
 export const OnboardingRoleSelectionPage: React.FC = () => {
   const navigate = useNavigate()
+  const { setRole } = useRole()
   const [selectedRole, setSelectedRole] = useState<UserRole>('Parent')
   const [email, setEmail] = useState('anjali.sharma@familydemo.org')
   const [password, setPassword] = useState('YantraDemo2026')
@@ -60,6 +62,7 @@ export const OnboardingRoleSelectionPage: React.FC = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
+    setRole(selectedRole)
     if (selectedRole === 'Parent') {
       navigate('/parent')
     } else if (selectedRole === 'Instructor') {

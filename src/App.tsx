@@ -1,4 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { RoleProvider } from './context/RoleContext'
 import { OnboardingRoleSelectionPage } from './pages/onboarding/OnboardingRoleSelectionPage'
 import { ParentDashboardPage } from './pages/parent/ParentDashboardPage'
 import { ProgramsExplorePage } from './pages/courses/ProgramsExplorePage'
@@ -14,23 +15,25 @@ import { MessagesAcademyInfoPage } from './pages/messaging/MessagesAcademyInfoPa
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<OnboardingRoleSelectionPage />} />
-        <Route path="/parent" element={<ParentDashboardPage />} />
-        <Route path="/courses" element={<ProgramsExplorePage />} />
-        <Route path="/enroll" element={<EnrollmentWizardPage />} />
-        <Route path="/schedule" element={<ScheduleCalendarPage />} />
-        <Route path="/family" element={<FamilyProfilePage />} />
-        <Route path="/attendance" element={<ParentAttendanceCheckinPage />} />
-        <Route path="/qr-pickup" element={<QrPickupVerificationPage />} />
-        <Route path="/payments" element={<PaymentsBillingPage />} />
-        <Route path="/instructor" element={<InstructorAttendancePage />} />
-        <Route path="/student" element={<StudentLearningDashboardPage />} />
-        <Route path="/messages" element={<MessagesAcademyInfoPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </BrowserRouter>
+    <RoleProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<OnboardingRoleSelectionPage />} />
+          <Route path="/parent" element={<ParentDashboardPage />} />
+          <Route path="/courses" element={<ProgramsExplorePage />} />
+          <Route path="/enroll" element={<EnrollmentWizardPage />} />
+          <Route path="/schedule" element={<ScheduleCalendarPage />} />
+          <Route path="/family" element={<FamilyProfilePage />} />
+          <Route path="/attendance" element={<ParentAttendanceCheckinPage />} />
+          <Route path="/qr-pickup" element={<QrPickupVerificationPage />} />
+          <Route path="/payments" element={<PaymentsBillingPage />} />
+          <Route path="/instructor" element={<InstructorAttendancePage />} />
+          <Route path="/student" element={<StudentLearningDashboardPage />} />
+          <Route path="/messages" element={<MessagesAcademyInfoPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </RoleProvider>
   )
 }
 

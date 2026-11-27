@@ -6,7 +6,7 @@ export const ParentBottomNav: React.FC = () => {
   return (
     <nav
       aria-label="Parent navigation"
-      className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-surface border-t border-outline-variant px-gutter-sm py-gutter-xs grid grid-cols-5 items-end z-30"
+      className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-surface border-t border-outline-variant px-2 pt-1.5 pb-3 grid grid-cols-5 items-end z-30"
     >
       <NavLink
         to="/parent"

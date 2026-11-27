@@ -1,15 +1,21 @@
-import React from 'react'
-import { Bot, Code2, Cpu, Trophy, Award, ChevronRight } from 'lucide-react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Bot, Code2, Cpu, Trophy, Award, ChevronRight, LogOut } from 'lucide-react'
 import { MobileShell } from '../../layouts/MobileShell'
 import { StudentBottomNav } from '../../components/navigation/StudentBottomNav'
 import { ResponsiveImage } from '../../components/common/ResponsiveImage'
+import { AppToast } from '../../components/common/AppToast'
 
 export const StudentLearningDashboardPage: React.FC = () => {
+  const [toast, setToast] = useState<string | null>(null)
+
   return (
     <MobileShell>
+      <AppToast message={toast} onClose={() => setToast(null)} />
+
       {/* Header with Mascot */}
-      <header className="bg-primary text-on-primary px-page-margin pt-gutter-lg pb-gutter-lg rounded-b-xl flex items-center justify-between">
-        <div className="flex items-center gap-gutter-md">
+      <header className="bg-primary text-on-primary px-page-margin pt-gutter-lg pb-gutter-lg rounded-b-xl flex items-center justify-between gap-gutter-sm">
+        <div className="flex items-center gap-gutter-md min-w-0">
           <ResponsiveImage
             webpSrc="/assets/images/logos/yantra-mascot.webp"
             fallbackSrc="/assets/images/logos/yantra-mascot.png"
@@ -17,14 +23,25 @@ export const StudentLearningDashboardPage: React.FC = () => {
             className="w-12 h-12 rounded-full bg-surface object-cover shrink-0"
             loading="eager"
           />
-          <div>
+          <div className="min-w-0">
             <p className="font-body text-body-sm text-primary-container">Welcome back,</p>
-            <h1 className="font-headline text-headline-md text-on-primary">Aarav Sharma</h1>
+            <h1 className="font-headline text-headline-md text-on-primary truncate">
+              Aarav Sharma
+            </h1>
           </div>
         </div>
-        <span className="px-3 py-1 rounded-full bg-warning text-on-warning font-mono text-label-md tabular-nums">
-          1,240 XP
-        </span>
+        <div className="flex items-center gap-gutter-xs shrink-0">
+          <span className="px-3 py-1 rounded-full bg-warning text-on-warning font-mono text-label-md tabular-nums">
+            1,240 XP
+          </span>
+          <Link
+            to="/"
+            aria-label="Switch role or sign out"
+            className="w-9 h-9 rounded-full bg-secondary/40 flex items-center justify-center text-on-primary hover:bg-secondary"
+          >
+            <LogOut className="w-4 h-4" aria-hidden="true" />
+          </Link>
+        </div>
       </header>
 
       <main className="px-page-margin pt-gutter-md flex flex-col gap-gutter-md">
@@ -46,49 +63,69 @@ export const StudentLearningDashboardPage: React.FC = () => {
         <section className="flex flex-col gap-gutter-sm">
           <h2 className="font-headline text-title-lg text-on-surface">Skill Tracks</h2>
           <div className="grid grid-cols-2 gap-gutter-sm">
-            <div className="bg-surface rounded-lg p-gutter-md border border-outline-variant shadow-sm flex flex-col gap-gutter-xs">
+            <Link
+              to="/courses"
+              className="bg-surface rounded-lg p-gutter-md border border-outline-variant shadow-sm flex flex-col gap-gutter-xs hover:border-secondary transition-colors duration-state-change"
+            >
               <Bot className="w-6 h-6 text-secondary" aria-hidden="true" />
               <h3 className="font-body text-title-md text-on-surface">LEGO Robotics</h3>
               <span className="font-body text-body-sm text-on-success-container font-semibold">
                 Level 4 · Active
               </span>
-            </div>
-            <div className="bg-surface rounded-lg p-gutter-md border border-outline-variant shadow-sm flex flex-col gap-gutter-xs">
+            </Link>
+            <Link
+              to="/courses"
+              className="bg-surface rounded-lg p-gutter-md border border-outline-variant shadow-sm flex flex-col gap-gutter-xs hover:border-secondary transition-colors duration-state-change"
+            >
               <Code2 className="w-6 h-6 text-secondary" aria-hidden="true" />
               <h3 className="font-body text-title-md text-on-surface">Python &amp; Scratch</h3>
               <span className="font-body text-body-sm text-on-surface-variant">
                 Level 3 · Loops
               </span>
-            </div>
-            <div className="bg-surface rounded-lg p-gutter-md border border-outline-variant shadow-sm flex flex-col gap-gutter-xs">
+            </Link>
+            <Link
+              to="/courses"
+              className="bg-surface rounded-lg p-gutter-md border border-outline-variant shadow-sm flex flex-col gap-gutter-xs hover:border-secondary transition-colors duration-state-change"
+            >
               <Cpu className="w-6 h-6 text-secondary" aria-hidden="true" />
               <h3 className="font-body text-title-md text-on-surface">AI &amp; ML Basics</h3>
               <span className="font-body text-body-sm text-on-surface-variant">Next Track</span>
-            </div>
-            <div className="bg-surface rounded-lg p-gutter-md border border-outline-variant shadow-sm flex flex-col gap-gutter-xs">
+            </Link>
+            <Link
+              to="/schedule"
+              className="bg-surface rounded-lg p-gutter-md border border-outline-variant shadow-sm flex flex-col gap-gutter-xs hover:border-secondary transition-colors duration-state-change"
+            >
               <Trophy className="w-6 h-6 text-secondary" aria-hidden="true" />
               <h3 className="font-body text-title-md text-on-surface">FIRST LEGO League</h3>
               <span className="font-body text-body-sm text-secondary">Team #48210</span>
-            </div>
+            </Link>
           </div>
         </section>
 
         {/* Certificates & Achievements */}
-        <section className="bg-surface rounded-lg p-gutter-md border border-outline-variant shadow-sm flex items-center justify-between gap-gutter-md">
-          <div className="flex items-center gap-gutter-md">
-            <div className="w-11 h-11 rounded-full bg-warning-container text-on-warning-container flex items-center justify-center shrink-0">
-              <Award className="w-6 h-6" aria-hidden="true" />
+        <section id="achievements">
+          <button
+            type="button"
+            onClick={() =>
+              setToast('Explorer Robotics Certificate verified · 12 Missions Completed')
+            }
+            className="w-full text-left bg-surface rounded-lg p-gutter-md border border-outline-variant shadow-sm flex items-center justify-between gap-gutter-md hover:border-secondary transition-colors duration-state-change"
+          >
+            <div className="flex items-center gap-gutter-md">
+              <div className="w-11 h-11 rounded-full bg-warning-container text-on-warning-container flex items-center justify-center shrink-0">
+                <Award className="w-6 h-6" aria-hidden="true" />
+              </div>
+              <div>
+                <h3 className="font-body text-title-md text-on-surface">
+                  Explorer Robotics Certificate
+                </h3>
+                <p className="font-body text-body-sm text-on-surface-variant">
+                  Earned Oct 2026 · 12 Missions Completed
+                </p>
+              </div>
             </div>
-            <div>
-              <h3 className="font-body text-title-md text-on-surface">
-                Explorer Robotics Certificate
-              </h3>
-              <p className="font-body text-body-sm text-on-surface-variant">
-                Earned Oct 2026 · 12 Missions Completed
-              </p>
-            </div>
-          </div>
-          <ChevronRight className="w-5 h-5 text-secondary shrink-0" aria-hidden="true" />
+            <ChevronRight className="w-5 h-5 text-secondary shrink-0" aria-hidden="true" />
+          </button>
         </section>
       </main>
 
