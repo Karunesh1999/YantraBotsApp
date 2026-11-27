@@ -78,12 +78,12 @@ export const ScheduleCalendarPage: React.FC = () => {
 
       {/* Main Calendar & Timeline Sessions */}
       <main className="px-page-margin pt-gutter-md flex flex-col gap-gutter-md">
-        <div className="flex items-center justify-between gap-gutter-sm">
-          <div className="flex items-center gap-gutter-xs overflow-x-auto no-scrollbar">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex items-center gap-1.5 min-w-0">
             <button
               type="button"
               onClick={() => setStudentFilter('All')}
-              className={`px-3 py-1 rounded-full font-body text-label-sm shrink-0 ${
+              className={`px-2.5 py-1.5 rounded-full font-body text-label-sm whitespace-nowrap shrink-0 ${
                 studentFilter === 'All'
                   ? 'bg-primary text-on-primary'
                   : 'bg-surface border border-outline text-on-surface'
@@ -94,7 +94,7 @@ export const ScheduleCalendarPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setStudentFilter('Ashburn – HQ')}
-              className={`px-3 py-1 rounded-full font-body text-label-sm shrink-0 ${
+              className={`px-2.5 py-1.5 rounded-full font-body text-label-sm whitespace-nowrap shrink-0 ${
                 studentFilter === 'Ashburn – HQ'
                   ? 'bg-primary text-on-primary'
                   : 'bg-surface border border-outline text-on-surface'
@@ -107,7 +107,7 @@ export const ScheduleCalendarPage: React.FC = () => {
           <button
             type="button"
             onClick={() => setAbsenceOpen(true)}
-            className="px-3 py-1.5 rounded-md bg-primary-container text-primary font-body text-label-md shrink-0"
+            className="px-2.5 py-1.5 rounded-md bg-primary-container text-primary font-body text-label-sm whitespace-nowrap shrink-0"
           >
             Report Absence
           </button>

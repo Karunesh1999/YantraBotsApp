@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Bot, ChevronRight, Mail, Lock, Eye, EyeOff } from 'lucide-react'
+import { ChevronRight, Mail, Lock, Eye, EyeOff } from 'lucide-react'
 import type { UserRole } from '../../types/academy'
 import { ResponsiveImage } from '../../components/common/ResponsiveImage'
 import { useRole } from '../../context/RoleContext'
@@ -77,8 +77,14 @@ export const OnboardingRoleSelectionPage: React.FC = () => {
       {/* Top Brand Header */}
       <header className="flex items-center justify-between pt-gutter-xs">
         <div className="flex items-center gap-gutter-sm">
-          <div className="w-10 h-10 rounded-md bg-primary text-on-primary flex items-center justify-center shadow-sm">
-            <Bot className="w-5 h-5" aria-hidden="true" />
+          <div className="w-10 h-10 rounded-md bg-surface border border-outline-variant p-1 flex items-center justify-center shadow-sm overflow-hidden">
+            <ResponsiveImage
+              webpSrc="/assets/images/logos/yantra-brand-logo.webp"
+              fallbackSrc="/assets/images/logos/yantra-brand-logo.png"
+              alt="Yantra Robotics Academy"
+              className="w-full h-full object-contain"
+              loading="eager"
+            />
           </div>
           <div>
             <span className="font-headline text-title-lg text-primary block leading-tight">
@@ -94,13 +100,13 @@ export const OnboardingRoleSelectionPage: React.FC = () => {
         </span>
       </header>
 
-      {/* Welcome Hero with Mascot */}
+      {/* Welcome Hero with Brand Logo */}
       <section className="bg-surface rounded-xl p-gutter-md border border-outline-variant shadow-sm flex items-center gap-gutter-md">
         <ResponsiveImage
-          webpSrc="/assets/images/logos/yantra-mascot.webp"
-          fallbackSrc="/assets/images/logos/yantra-mascot.png"
-          alt="Yantra Robotics friendly mascot"
-          className="w-20 h-20 rounded-lg object-cover shrink-0 bg-primary-container"
+          webpSrc="/assets/images/logos/yantra-brand-logo.webp"
+          fallbackSrc="/assets/images/logos/yantra-brand-logo.png"
+          alt="Yantra Robotics Academy Logo"
+          className="w-20 h-20 rounded-lg object-contain p-1 shrink-0 bg-surface border border-outline-variant"
           loading="eager"
         />
         <div className="flex flex-col gap-gutter-xs">

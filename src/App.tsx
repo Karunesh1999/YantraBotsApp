@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { RoleProvider } from './context/RoleContext'
+import { SplashScreen } from './components/common/SplashScreen'
 import { OnboardingRoleSelectionPage } from './pages/onboarding/OnboardingRoleSelectionPage'
 import { ParentDashboardPage } from './pages/parent/ParentDashboardPage'
 import { ProgramsExplorePage } from './pages/courses/ProgramsExplorePage'
@@ -14,8 +16,11 @@ import { StudentLearningDashboardPage } from './pages/student/StudentLearningDas
 import { MessagesAcademyInfoPage } from './pages/messaging/MessagesAcademyInfoPage'
 
 function App() {
+  const [showSplash, setShowSplash] = useState(true)
+
   return (
     <RoleProvider>
+      {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<OnboardingRoleSelectionPage />} />
